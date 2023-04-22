@@ -1,13 +1,5 @@
 const automata = [
     {
-        "name": "Seeds",
-        "colors": ["#1e1e1e", "#ce9178"],
-        "update": (neighbours, current) => {
-            return (neighbours[1] == 2) | 0
-        }
-    },
-
-    {
         "name": "Game Of Life",
         "colors": ["#1e1e1e", "#ce9178"],
         "update": (neighbours, current) => {
@@ -16,6 +8,14 @@ const automata = [
             case 2: return current
             default: return 0
             }
+        }
+    },
+
+    {
+        "name": "Seeds",
+        "colors": ["#1e1e1e", "#ce9178"],
+        "update": (neighbours, current) => {
+            return (neighbours[1] == 2) | 0
         }
     },
 
