@@ -29,6 +29,19 @@ const automata = [
             case 2: return 0
             }
         }
+    },
+
+    {
+        "name": "Wireworld",
+        "colors": ["#1e1e1e", "#ce9178", "#9cdcfe", "#6a9955"],
+        "update": (neighbours, current) => {
+            switch (current) {
+            case 0: return 0
+            case 1: return 2
+            case 2: return 3
+            case 3: return (neighbours[1] == 1 || neighbours[1] == 2) ? 1 : 3
+            }
+        }
     }
 ]
 
