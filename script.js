@@ -135,10 +135,16 @@ window.onload = () => {
         }
     })
 
+    function step() {
+        [board, buffer] = update(board, buffer, automaton)
+        render(ctx, board, automaton.colors)
+    }
+
+    document.getElementById("step").addEventListener("click", step)
+
     setInterval(() => {
         if (playing) {
-            [board, buffer] = update(board, buffer, automaton)
-            render(ctx, board, automaton.colors)
+            step()
         }
     }, 50)
 
