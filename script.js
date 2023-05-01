@@ -76,12 +76,25 @@ function update(board, buffer, automaton) {
 }
 
 window.onload = () => {
+    let color = 1
     let automaton = automata[0]
+
+    const colors = document.getElementById("colors")
+    colors.max = automaton.colors.length - 1
+
+    colors.addEventListener("change", () => {
+        if (colors.validity.valid) {
+            color = colors.valueAsNumber
+        }
+    })
 
     const list = document.getElementById("list")
 
     list.addEventListener("change", () => {
         automaton = automata[Number(list.value)]
+        colors.max = automaton.colors.length - 1
+        colors.value = 1
+        color = 1
     })
 
     automata.forEach((automaton, i) => {
@@ -104,7 +117,7 @@ window.onload = () => {
         const col = Math.floor(event.offsetX / WIDTH)
         const row = Math.floor(event.offsetY / HEIGHT)
 
-        board[row][col] = 1
+        board[row][col] = color
         render(ctx, board, automaton.colors)
     })
 
