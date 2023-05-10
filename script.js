@@ -15,6 +15,21 @@ const automata = [
     },
 
     {
+        "name": "Day and Night",
+        "colors": [
+            {"name": "Dead", "value": "#1e1e1e"},
+            {"name": "Alive", "value": "#ce9178"}
+        ],
+        "update": (neighbours, current) => {
+            switch (neighbours[1]) {
+            case 3: case 6: case 7: case 8: return 1
+            case 4: return current
+            default: return 0
+            }
+        }
+    },
+
+    {
         "name": "Seeds",
         "colors": [
             {"name": "Dead", "value": "#1e1e1e"},
