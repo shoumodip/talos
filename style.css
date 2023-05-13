@@ -2,13 +2,19 @@
   font-size: 1.3rem;
 }
 
-body {
-  width: 640px;
-  margin: auto;
+html {
+    margin: auto;
+    display: table;
 }
 
 header {
-  gap: 0.1rem;
+  gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  gap: 0.3rem;
   display: flex;
 }
 

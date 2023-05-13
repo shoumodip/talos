@@ -124,9 +124,9 @@ window.onload = () => {
 
     const colors = document.getElementById("colors")
 
-    colors.addEventListener("change", () => {
+    colors.onchange = () => {
         color = Number(colors.value)
-    })
+    }
 
     const list = document.getElementById("list")
 
@@ -142,9 +142,9 @@ window.onload = () => {
         color = 1
     }
 
-    list.addEventListener("change", () => {
+    list.onchange = () => {
         changeAutomaton(Number(list.value))
-    })
+    }
 
     changeAutomaton(0)
 
@@ -158,10 +158,20 @@ window.onload = () => {
     let board = Array(ROWS).fill(0).map(() => Array(COLS).fill(0))
     let buffer = Array(ROWS).fill(0).map(() => Array(COLS).fill(0))
 
+    document.getElementById("save").onclick = () => {
+        const data = board.map((row) => row.join("x")).join("y")
+        const path = automaton.name.replaceAll(" ", "-").toLowerCase()
+
+        const link = document.createElement("a")
+        link.setAttribute("href", "data:text/plain;charset=utf-8," + data)
+        link.setAttribute("download", "automaton-" + path)
+        link.click()
+    }
+
     const app = document.getElementById("app")
     const ctx = app.getContext("2d")
 
-    app.addEventListener("click", (event) => {
+    app.onclick = (event) => {
         const WIDTH = ctx.canvas.width / COLS
         const HEIGHT = ctx.canvas.height / ROWS
 
@@ -170,13 +180,28 @@ window.onload = () => {
 
         board[row][col] = color
         render(ctx, board, automaton.colors)
-    })
+    }
+
+    document.getElementById("load").onclick = () => {
+        const file = document.createElement("input")
+        file.type = "file"
+        file.onchange = () => {
+            const reader = new FileReader();
+            reader.readAsText(file.files[0], "UTF-8");
+            reader.onload = () => {
+                board = reader.result.split("y").map((row) => row.split("x"))
+                render(ctx, board, automaton.colors)
+            }
+        }
+
+        file.click()
+    }
 
     let playing = false
 
     const play = document.getElementById("play")
 
-    play.addEventListener("click", () => {
+    play.onclick = () => {
         if (playing) {
             play.innerText = "Play"
             playing = false
@@ -184,14 +209,14 @@ window.onload = () => {
             play.innerText = "Pause"
             playing = true
         }
-    })
+    }
 
     function step() {
         [board, buffer] = update(board, buffer, automaton)
         render(ctx, board, automaton.colors)
     }
 
-    document.getElementById("step").addEventListener("click", step)
+    document.getElementById("step").onclick = step
 
     setInterval(() => {
         if (playing) {
