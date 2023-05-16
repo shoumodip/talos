@@ -35,7 +35,7 @@ const automata = [
             {"name": "Dead", "value": "#1e1e1e"},
             {"name": "Alive", "value": "#ce9178"}
         ],
-        "update": (neighbours, current) => {
+        "update": (neighbours, _) => {
             return (neighbours[1] == 2) | 0
         }
     },

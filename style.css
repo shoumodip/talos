@@ -1,5 +1,5 @@
 * {
-  font-size: 1.3rem;
+    font-size: 1.3rem;
 }
 
 html {
@@ -8,19 +8,19 @@ html {
 }
 
 header {
-  gap: 0.3rem;
-  display: flex;
-  flex-direction: column;
+    gap: 0.3rem;
+    display: flex;
+    flex-direction: column;
 }
 
 section {
-  gap: 0.3rem;
-  display: flex;
+    gap: 0.3rem;
+    display: flex;
 }
 
 input, button, select {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
 }
